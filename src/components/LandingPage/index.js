@@ -5,7 +5,7 @@ import { StyledLandingPage } from './styled';
 const LandingPage = () => {
     return (
         <StyledLandingPage >
-            <p>Welcome! </p>
+            <p>Welcome to Super Hero App ! ! </p>
             <div>
             <Login />
             </div>

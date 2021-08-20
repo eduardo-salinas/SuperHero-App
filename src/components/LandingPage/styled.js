@@ -14,9 +14,11 @@ export const StyledLandingPage = styled.div`
 	width: 100%;
 	height: 100%;
 	background-position: center;
-	background-size: cover;
+	background-size: cover;          
+    font-family: 'Bangers', regular;
+    font-weight: 400;    
     p{
-        font-size:2rem;
+        font-size: 2.5rem;
     }
 .login {
     flex-direction: column;
