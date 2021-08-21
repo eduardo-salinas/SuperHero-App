@@ -1,24 +1,39 @@
 import {
+    ADD_TO_TEAM,
     GET_HERO_BY_ID,
-    GET_HERO_BY_NAME,
+    GET_HEROES_BY_NAME,
     LOADING,
-    LOG_IN
+    LOG_IN,
+    REMOVE_FROM_TEAM
 } from "../actions";
 
 const initialState = {
-    hero: [],
+    heroes: [],
     heroDetail: {},
     user: {},
+    team: [],
     loading: false
 };
 
 const reducer = (state = initialState, { payload, type }) => {
     switch (type) {
 
-        case GET_HERO_BY_NAME:
+        case ADD_TO_TEAM:
             return {
                 ...state,
-                hero: payload,
+                team: state.team.concat(payload)
+            };
+
+        case REMOVE_FROM_TEAM:
+            return {
+                ...state,
+                team: state.team.filter(hero => hero.id !== payload)
+            };
+
+        case GET_HEROES_BY_NAME:
+            return {
+                ...state,
+                heroes: payload,
                 loading: false,
             };
 
@@ -31,7 +46,6 @@ const reducer = (state = initialState, { payload, type }) => {
         case LOG_IN:
             return {
                 ...state,
-                loading: false,
                 user: payload
             };
         case LOADING:

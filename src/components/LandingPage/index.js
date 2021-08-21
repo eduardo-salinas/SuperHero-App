@@ -5,13 +5,14 @@ import { StyledLandingPage } from './styled';
 import { Card } from 'react-bootstrap';
 
 const LandingPage = () => {
+   
     return (
         <StyledLandingPage >
             <Card className="title">
                 <Card.Img src={comic} alt='' />
-            <Card.ImgOverlay>
-                <Card.Text>Welcome to Super Hero App ! ! </Card.Text>
-            </Card.ImgOverlay>
+                <Card.ImgOverlay>
+                    <Card.Text>Welcome to Super Hero App ! ! </Card.Text>
+                </Card.ImgOverlay>
             </Card>
             <div>
                 <Login />

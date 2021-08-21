@@ -5,10 +5,20 @@ import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Alert, Button, FormGroup, FormLabel } from 'react-bootstrap';
 import { logIn } from '../../redux/actions';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const LogIn = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const store = useSelector(state => state);
+
+    useEffect(() => {
+        if (window.localStorage.token || store.user.loged === "on") history.push("/home");
+        if (store.user.error) alert(store.user.error);
+        if (store.user.loged === "on") alert("ok");
+    }, [store.user, history])
+
     const initialValues = {
         email: '',
         password: ''
@@ -22,9 +32,7 @@ const LogIn = () => {
     const handleSubmit = async (value, { resetForm }) => {
         await dispatch(logIn(value));
         console.log(value);
-        store.user.error && alert(store.user.error)
-        store.user.token && alert("ok")
-        resetForm(initialValues);
+        resetForm();
     };
     return (
         <Formik

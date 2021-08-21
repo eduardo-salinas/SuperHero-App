@@ -1,15 +1,23 @@
 import { Route } from 'react-router-dom';
+import Home from './components/Home';
 import LandingPage from './components/LandingPage';
-import Login from "./components/LogIn";
+import NavBar from './components/NavBar';
+import SearchHero from './components/SearchHero';
+import GlobalStyle from './GlobalStyles';
 
 
 function App() {
   return (
     <>
-    <Route component={LandingPage}
-        path="/" />
-      <Route component={Login}
-        path="/login" />
+      <GlobalStyle />
+      <Route component={LandingPage}
+        exact path='/' />
+      <Route component={NavBar}
+        path={['/home', '/hero/:id','/search']} />
+      <Route component={Home}
+        path='/home' />
+        <Route component={SearchHero}
+        path='/search' />
     </>
   );
 }
