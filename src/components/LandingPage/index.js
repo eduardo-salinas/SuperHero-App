@@ -1,13 +1,20 @@
 import React from 'react';
-import Login from '../Login';
+import Login from '../LogIn';
+import comic from '../../assets/comic.png'
 import { StyledLandingPage } from './styled';
+import { Card } from 'react-bootstrap';
 
 const LandingPage = () => {
     return (
         <StyledLandingPage >
-            <p>Welcome to Super Hero App ! ! </p>
+            <Card className="title">
+                <Card.Img src={comic} alt='' />
+            <Card.ImgOverlay>
+                <Card.Text>Welcome to Super Hero App ! ! </Card.Text>
+            </Card.ImgOverlay>
+            </Card>
             <div>
-            <Login />
+                <Login />
             </div>
         </StyledLandingPage>
     );

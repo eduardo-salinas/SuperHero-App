@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Alert, Button, FormGroup, FormLabel } from 'react-bootstrap';
+import { logIn } from '../../redux/actions';
 
-const Login = () => {
-
+const LogIn = () => {
+    const dispatch = useDispatch();
+    const store = useSelector(state => state);
     const initialValues = {
         email: '',
         password: ''
@@ -16,8 +19,11 @@ const Login = () => {
         password: Yup.string().required('Password required')
     });
 
-    const handleSubmit = (value, { resetForm }) => {
-        console.log("data", value);
+    const handleSubmit = async (value, { resetForm }) => {
+        await dispatch(logIn(value));
+        console.log(value);
+        store.user.error && alert(store.user.error)
+        store.user.token && alert("ok")
         resetForm(initialValues);
     };
     return (
@@ -30,7 +36,7 @@ const Login = () => {
                 ({ errors, touched }) => {
                     return (
                         <div className="login">
-                            <p>Log in with your account to start using the app</p><br/><br/><br/>
+                            <p>Log in with your account to start using the app</p><br /><br /><br />
                             <Form>
                                 <FormGroup className="mb-3" controlId="formBasicEmail">
                                     <FormLabel>Email address</FormLabel>
@@ -58,7 +64,7 @@ const Login = () => {
                                         </Alert>
                                     ) : null}
                                 </FormGroup>
-                                <Button variant='danger' type='submit' disabled={errors.email || errors.password}>Submit</Button>
+                                <Button variant='warning' type='submit' disabled={errors.email || errors.password}>Submit</Button>
                             </Form>
                         </div>
                     )
@@ -69,4 +75,4 @@ const Login = () => {
     )
 };
 
-export default Login;
+export default LogIn;

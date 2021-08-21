@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
-import Login from "./components/Login";
+import Login from "./components/LogIn";
 
 
 function App() {
