@@ -6,11 +6,6 @@ display: flex;
 align-items: center;
 flex-direction: column;
 margin-top: 1rem;
-.sep{
-    width:80%;
-    height: .3rem;
-    background-color:rgb(247, 247, 247);
-}
 .team{
     @media screen and (max-width: 1024px){
         grid-template-columns: repeat(2,1fr);
