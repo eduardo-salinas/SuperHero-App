@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import SearchCard from '../Cards/SearchCard';
 import ReactPaginate from 'react-paginate';
 import Search from './Search';
-import StyledHome from './styled';
+import StyledSearch from './styled';
 
 const SearchHero = () => {
     const store = useSelector(state => state);
@@ -20,7 +20,7 @@ const SearchHero = () => {
         document.documentElement.scrollTop = 0;
     };
     return (
-        <StyledHome>
+        <StyledSearch>
             {!window.localStorage.token ?
                 <h1>Inicia sesion</h1>
                 : <div>
@@ -28,34 +28,39 @@ const SearchHero = () => {
                         <Search />
                     </div>
                     {store.loading ?
-                        <Spinner animation="border" variant="warning" /> :
+                        <div className="spinner">
+                            <Spinner animation="border" variant="warning" />
+                        </div>
+                        :
                         <>
-                            {store.heroes.length > 8 && (
-                                <div className="paginate">
-                                    <ReactPaginate
-                                        previousLabel={"Prev"}
-                                        nextLabel={"Next"}
-                                        pageCount={pageCount}
-                                        onPageChange={changePage}
-                                        containerClassName={"paginationBtn"}
-                                        previousLinkClassName={"previousBtn"}
-                                        nextLinkClassName={"nextBtn"}
-                                        disabledClassName={"paginationDisable"}
-                                        activeClassName={"paginationActive"}
-                                        hrefBuilder={() => toTop()}
-                                    />
-                                </div>
-                            )}
-                            <div className="heroes">
+                            {
+                                store.heroes.length > 8 && (
+                                    <div className="paginate">
+                                        <ReactPaginate
+                                            previousLabel={"Prev"}
+                                            nextLabel={"Next"}
+                                            pageCount={pageCount}
+                                            onPageChange={changePage}
+                                            containerClassName={"paginationBtn"}
+                                            previousLinkClassName={"previousBtn"}
+                                            nextLinkClassName={"nextBtn"}
+                                            disabledClassName={"paginationDisable"}
+                                            activeClassName={"paginationActive"}
+                                            hrefBuilder={() => toTop()}
+                                        />
+                                    </div>
+                                )
+                            }
+                            < div className="heroes">
                                 {store.heroes && store.heroes.slice((pageNumber * 8), (pageNumber * 8) + 8).map(hero =>
-                                    <SearchCard id={hero.id} name={hero.name} image={hero.image.url} />
+                                    <SearchCard id={hero.id} name={hero.name} image={hero.image.url} hero={hero} />
                                 )}
                             </div>
                         </>
                     }
-                </div>
+                </div >
             }
-        </StyledHome>
+        </StyledSearch >
     )
 };
 

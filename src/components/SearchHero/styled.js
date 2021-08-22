@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const StyledHome = styled.div`
+const StyledSearch = styled.div`
     display:flex;
     justify-content: center;
 .search{
@@ -57,4 +57,4 @@ const StyledHome = styled.div`
     align-items: flex-start;
 }
 `
-export default StyledHome
+export default StyledSearch;

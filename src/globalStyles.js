@@ -31,6 +31,10 @@ a:hover{
 button:hover{
     color:rgb(247, 247, 247);
 }
+h1{
+    text-shadow: 0 8px 10px #231e23, 3px -2px 1px #231e23;
+    font-size:3.4rem; 
+}
 p{
     text-shadow: 0 8px 10px #231e23, 3px -2px 1px #231e23;
 }
@@ -45,6 +49,24 @@ body{
     background-position: center;
     background-attachment: fixed;    
     background-repeat: no-repeat;
+}
+.swal-button {
+  color:#231e23;
+  background-color: #F6D167;  
+}
+.swal-button:hover{
+    color: #231e23 !important;
+    background-color: #FFF7AE !important;
+}
+.spinner{
+    display:flex;
+    justify-content: center;
+    margin-top: 10rem;
+}
+.btn-success{
+    width: 3rem;
+    height: 3rem;
+    border-radius:50%;
 }
 `
 
