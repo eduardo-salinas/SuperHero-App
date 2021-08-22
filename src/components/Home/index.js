@@ -9,7 +9,6 @@ const Home = () => {
     return (
         <StyledHome>
             <h1>MY TEAM</h1>
-            <hr className="sep" />
             <Link to='/search'>
                 <Button variant='warning'>Add to new Hero !</Button>
             </Link>
