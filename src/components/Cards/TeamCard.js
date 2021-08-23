@@ -13,7 +13,7 @@ const TeamCard = ({ hero }) => {
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        dispatch(removeFromTeam(hero.id))
+        dispatch(removeFromTeam(hero))
         swal({
             text: "Hero remove from team",
             icon: "success",

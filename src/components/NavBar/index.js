@@ -34,7 +34,7 @@ const NavBar = () => {
                 </Navbar.Brand>
                 <Nav.Link>
                     <Link className="link" to="/home">
-                        Home
+                        Team
                     </Link>
                 </Nav.Link>
                 <Nav.Link>

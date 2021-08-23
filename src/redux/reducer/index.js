@@ -36,7 +36,10 @@ const reducer = (state = initialState, { payload, type }) => {
         case REMOVE_FROM_TEAM:
             return {
                 ...state,
-                team: state.team.filter(hero => hero.id !== payload)
+                team: state.team.filter(hero => hero.id !== payload.id),
+                alignment: (payload.biography.alignment === "good" ?
+                    { ...state.alignment, good: state.alignment.good - 1 } :
+                    { ...state.alignment, bad: state.alignment.bad - 1 })
             };
 
         case GET_HEROES_BY_NAME:

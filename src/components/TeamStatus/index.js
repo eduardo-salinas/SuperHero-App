@@ -8,7 +8,7 @@ const TeamStatus = () => {
     const [status, setStatus] = useState({
         power: 0,
         height: 0,
-        weight:0
+        weight: 0
     });
 
     useEffect(() => {
@@ -19,26 +19,26 @@ const TeamStatus = () => {
             w = w + parseInt(hero.appearance.weight[1]);
         });
         setStatus({
-            power: Math.round(p/team.length),
-            height: Math.round(h/team.length),
-            weight: Math.round(w/team.length)
+            power: Math.round(p / team.length),
+            height: Math.round(h / team.length),
+            weight: Math.round(w / team.length)
         });
-    },[team]);
+    }, [team]);
 
     return (
         <StyledStatus>
             <Card border="dark" className="status" style={{ width: '50rem' }}>
                 <Card.Text>Power Team:</Card.Text>
                 <Card.Text className="total-power">
-                    {status.power}
+                    {isNaN(status.power) ? 0 : status.power}
                 </Card.Text>
                 <Card.Text>Height:</Card.Text>
                 <Card.Text className="height">
-                    {status.height}
+                    {isNaN(status.height) ? 0 : status.height}
                 </Card.Text>
                 <Card.Text>Weight:</Card.Text>
                 <Card.Text className="height">
-                    {status.weight}
+                    {isNaN(status.weight) ? 0 : status.weight}
                 </Card.Text>
             </Card>
         </StyledStatus>

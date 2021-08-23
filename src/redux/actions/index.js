@@ -15,8 +15,8 @@ export const addHeroTeam = (hero) => {
     return { type: ADD_TO_TEAM, payload: hero };
 };
 
-export const removeFromTeam = (id) => {
-    return { type: REMOVE_FROM_TEAM, payload: id };
+export const removeFromTeam = (hero) => {
+    return { type: REMOVE_FROM_TEAM, payload: hero };
 };
 
 export const getHeroByName = (name) => {
