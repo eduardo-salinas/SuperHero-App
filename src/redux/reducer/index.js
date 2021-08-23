@@ -4,14 +4,20 @@ import {
     GET_HEROES_BY_NAME,
     LOADING,
     LOG_IN,
-    REMOVE_FROM_TEAM
+    REMOVE_FROM_TEAM,
+    LOG_OFF
 } from "../actions";
+import { orderTeam } from "./utils";
 
 const initialState = {
     heroes: [],
     heroDetail: {},
     user: {},
     team: [],
+    alignment: {
+        good: 0,
+        bad: 0
+    },
     loading: false
 };
 
@@ -21,7 +27,10 @@ const reducer = (state = initialState, { payload, type }) => {
         case ADD_TO_TEAM:
             return {
                 ...state,
-                team: state.team.concat(payload)
+                team: orderTeam(state, payload),
+                alignment: (payload.biography.alignment === "good" ?
+                    { ...state.alignment, good: state.alignment.good + 1 } :
+                    { ...state.alignment, bad: state.alignment.bad + 1 })
             };
 
         case REMOVE_FROM_TEAM:
@@ -44,6 +53,11 @@ const reducer = (state = initialState, { payload, type }) => {
                 loading: false,
             };
         case LOG_IN:
+            return {
+                ...state,
+                user: payload
+            };
+        case LOG_OFF:
             return {
                 ...state,
                 user: payload

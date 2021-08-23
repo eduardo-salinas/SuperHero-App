@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 
-export const StyledLandingPage = styled.div`
-    display: flex;
+export const StyledLandingPage = styled.div` 
     justify-content: space-around;   
+    display: flex;
     align-items: center;
+    text-align:center;
+    margin-top: 10rem;
     letter-spacing: 0.1em;
-    margin-top: 4rem;
+    height: 100%;    
     @media screen and (max-width: 1024px){
+        margin-top: 1rem;
         flex-direction: column;
         overflow: scroll;
         letter-spacing: 0;
         .title{          
-            padding-top: 1.5rem;
             p{
                 font-size: 2.6rem;   
             }        
@@ -20,15 +22,37 @@ export const StyledLandingPage = styled.div`
     }            
     .title{
         background-color: transparent;
-        font-size:2.8rem;
-        text-align: center;    
-        border:none;    
-        p{            
-            padding-top: 5.5rem;
+        font-size:3rem;  
+        border:none;
+        p{
+            padding-bottom: 4rem;
         }
+        img{
+            height: 60vh;
+        }    
+
     } 
     .title:hover{
+        transform: scale(1.01);
+    }
+    .start{
+        padding-bottom: 4rem;
+        background-color: transparent;
+        font-size:3rem;   
+        p{
+            padding-bottom: 4rem;
+        }       
+        img{
+            height: 40vh;
+        }    
+    }
+    .start:hover{
         transform: scale(1.02);
+    }
+    .card-img-overlay{
+        display:flex;
+        justify-content: center;
+        align-items: center;
     }
     .login {
         flex-direction: column;
@@ -36,8 +60,8 @@ export const StyledLandingPage = styled.div`
         border:solid rgba(0, 0, 0, 0.6);
         box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.5);
         text-align: center;
-        margin: 50px;
-        padding: 50px;
+        margin: 3rem;
+        padding: 3rem;
         border-radius: 10px;
         max-width: 500px;
         .alert-danger{

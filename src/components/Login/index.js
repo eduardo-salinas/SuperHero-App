@@ -6,18 +6,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Alert, Button, FormGroup, FormLabel } from 'react-bootstrap';
 import { logIn } from '../../redux/actions';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const LogIn = () => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const store = useSelector(state => state);
 
     useEffect(() => {
-        if (window.localStorage.token || store.user.loged === "on") history.push("/home");
-        if (store.user.error) alert(store.user.error);
-        if (store.user.loged === "on") alert("ok");
-    }, [store.user, history])
+        if (window.localStorage.superHero || store.user.loged === "on") {
+            swal({
+                text: "Correct!",
+                icon: "success",
+            });
+        };
+        if (store.user.error) {
+            swal({
+                title: "I'm sorry",
+                text: store.user.error,
+                icon: "warning",
+                dangerMode: true,
+            });
+        };
+    }, [store.user])
 
     const initialValues = {
         email: '',
@@ -29,9 +39,8 @@ const LogIn = () => {
         password: Yup.string().required('Password required')
     });
 
-    const handleSubmit = async (value, { resetForm }) => {
-        await dispatch(logIn(value));
-        console.log(value);
+    const handleSubmit = (value, { resetForm }) => {
+        dispatch(logIn(value));
         resetForm();
     };
     return (

@@ -1,14 +1,22 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { StyledAdd } from "./styled";
 
 const AddCard = () => {
 
 
     return (
-        <Card border="dark" className="add-card" style={{ width: '18rem' }}>            
-                <Button variant="success" style={{ width: '3rem' }}>➕</Button>            
-        </Card>
+        <StyledAdd>
+            <Card border="dark" className="add-card" style={{ width: '18rem' }}>
+                <Link to="search">
+                    <Button variant="success" style={{ width: '3rem' }}>
+                        ➕
+                    </Button>
+                </Link>
+            </Card>
+        </StyledAdd>
     )
 };
 

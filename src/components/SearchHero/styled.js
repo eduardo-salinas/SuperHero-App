@@ -26,13 +26,7 @@ const StyledSearch = styled.div`
     grid-template-columns: repeat(4,1fr);
     grid-gap: 1rem;
     align-content: center;
-    .hero{        
-        border-radius:.5rem;
-        background-color: rgb(247, 247, 247,0.6);        
-    }
-    img{
-        height: 50vh;
-    }
+
 }
 .paginate{
     .paginationBtn{

@@ -21,7 +21,7 @@ const SearchHero = () => {
     };
     return (
         <StyledSearch>
-            {!window.localStorage.token ?
+            {!window.localStorage.superHero ?
                 <h1>Inicia sesion</h1>
                 : <div>
                     <div className="search">

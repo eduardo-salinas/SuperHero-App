@@ -5,6 +5,7 @@ export const GET_HERO_BY_ID = 'GET_HERO_BY_ID';
 export const ADD_TO_TEAM = 'ADD_TO_TEAM';
 export const REMOVE_FROM_TEAM = 'REMOVE_FROM_TEAM';
 export const LOG_IN = "LOG_IN";
+export const LOG_OFF = "LOG_OFF"
 export const LOADING = 'LOADING';
 
 const URL = process.env.REACT_APP_API_URL;
@@ -55,10 +56,15 @@ export const logIn = (user) => {
     return async (dispatch) => {
         try {
             const res = await axios.post(URL_POST, user);
-            window.localStorage.setItem('token', res.data.token);
+            window.localStorage.setItem('superHero', res.data.token);
             dispatch({ type: LOG_IN, payload: { loged: "on" } });
         } catch (err) {
             dispatch({ type: LOG_IN, payload: err.response.data });
         };
     };
 };
+
+export const logOff = () => {
+    window.localStorage.removeItem("superHero");
+    return { type: LOG_OFF, payload: { loged: "off" } };
+}
