@@ -12,19 +12,23 @@ const Home = () => {
 
     return (
         <StyledHome>
-            <h1>MY TEAM</h1>
-            <TeamStatus />
-            <Link to='/search'>
-                <Button variant='warning'>Add to new Hero !</Button>
-            </Link>
-            <div className="team">
-                {store.team[0] ? <TeamCard hero={store.team[0]} /> : <AddCard />}
-                {store.team[1] ? <TeamCard hero={store.team[1]} /> : <AddCard />}
-                {store.team[2] ? <TeamCard hero={store.team[2]} /> : <AddCard />}
-                {store.team[3] ? <TeamCard hero={store.team[3]} /> : <AddCard />}
-                {store.team[4] ? <TeamCard hero={store.team[4]} /> : <AddCard />}
-                {store.team[5] ? <TeamCard hero={store.team[5]} /> : <AddCard />}
-            </div>
+            {!window.localStorage.superHero ?
+                <h1>Inicia sesion</h1>
+                : <>
+                    <h1>MY TEAM</h1>
+                    <TeamStatus />
+                    <Link to='/search'>
+                        <Button variant='warning'>Add to new Hero !</Button>
+                    </Link>
+                    <div className="team">
+                        {store.team[0] ? <TeamCard hero={store.team[0]} /> : <AddCard />}
+                        {store.team[1] ? <TeamCard hero={store.team[1]} /> : <AddCard />}
+                        {store.team[2] ? <TeamCard hero={store.team[2]} /> : <AddCard />}
+                        {store.team[3] ? <TeamCard hero={store.team[3]} /> : <AddCard />}
+                        {store.team[4] ? <TeamCard hero={store.team[4]} /> : <AddCard />}
+                        {store.team[5] ? <TeamCard hero={store.team[5]} /> : <AddCard />}
+                    </div>
+                </>}
         </StyledHome>
     )
 };
