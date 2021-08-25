@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StyledDetail } from './styled';
 import good from '../../assets/good.jpg';
 import bad from '../../assets/bad.jpg';
+import err from '../../assets/error.png';
 import swal from 'sweetalert';
 
 const HeroDetail = ({ match }) => {
@@ -38,6 +39,13 @@ const HeroDetail = ({ match }) => {
                 icon: "warning",
                 dangerMode: true,
             });
+        } else if (store.team.find(e => e.id === store.heroDetail.id)) {
+            swal({
+                title: "I'm sorry",
+                text: "This hero is already on your team",
+                icon: "warning",
+                dangerMode: true,
+            });
         } else {
             swal({
                 text: "Hero added to team",
@@ -51,50 +59,59 @@ const HeroDetail = ({ match }) => {
     return (
         <div>
             {!window.localStorage.superHero ?
-                <h1>Inicia sesion</h1>
+                <div className="err" >
+                    <img src={err} alt="" />
+                    <h1>I'm sorry<br />Log in with your account to start using the app</h1>
+                    <Button variant="warning">➡ Log In</Button>
+                </div>
                 : <>
                     {store.loading ?
                         <div className="spinner">
                             <Spinner animation="border" variant="warning" />
                         </div>
                         :
-                        store.heroDetail.name && (
-                            <StyledDetail>
-                                <Card border="dark" >
-                                    <Card.Img className="hero"
-                                        src={store.heroDetail.image.url}
-                                        alt="not found"
-                                    />
-                                </Card>
-                                <Card className="detail" border="dark">
-                                    <Card.Body>
-                                        <Card.Text className={title}>{store.heroDetail.name}</Card.Text>
-                                        <br />
-                                        <Card.Text className="power">⭐<b>Power Stats:</b></Card.Text>
-                                        <Card.Text>
-                                            🧠 Intelligence: {store.heroDetail.powerstats.intelligence} <br />
-                                            💪 Strength : {store.heroDetail.powerstats.strength} <br />
-                                            ⚡ Speed: {store.heroDetail.powerstats.speed} <br />
-                                            💎 Durability: {store.heroDetail.powerstats.durability} <br />
-                                            💥 Power: {store.heroDetail.powerstats.power} <br />
-                                            🥊 Combat: {store.heroDetail.powerstats.combat} <br />
-                                        </Card.Text>
-                                        <Card.Text>🧔 Occupation: {store.heroDetail.work.occupation}</Card.Text>
-                                        <br />
-                                        <div className="end">
-                                            <div>
-                                                {store.heroDetail.biography.alignment === "good" ?
-                                                    <Card.Text className="good-detail">Good<img src={good} alt="" /></Card.Text> :
-                                                    <Card.Text className="bad-detail">Bad<br /><img src={bad} alt="" /></Card.Text>}
+                        store.heroDetail.err ?
+                            <div className="err" >
+                                <img src={err} alt="" />
+                                <h1>Error!<br />Hero not found</h1>
+                            </div> :
+                            store.heroDetail.name && (
+                                <StyledDetail>
+                                    <Card border="dark" >
+                                        <Card.Img className="hero"
+                                            src={store.heroDetail.image.url}
+                                            alt="not found"
+                                        />
+                                    </Card>
+                                    <Card className="detail" border="dark">
+                                        <Card.Body>
+                                            <Card.Text className={title}>{store.heroDetail.name}</Card.Text>
+                                            <br />
+                                            <Card.Text className="power">⭐<b>Power Stats:</b></Card.Text>
+                                            <Card.Text>
+                                                🧠 Intelligence: {store.heroDetail.powerstats.intelligence} <br />
+                                                💪 Strength : {store.heroDetail.powerstats.strength} <br />
+                                                ⚡ Speed: {store.heroDetail.powerstats.speed} <br />
+                                                💎 Durability: {store.heroDetail.powerstats.durability} <br />
+                                                💥 Power: {store.heroDetail.powerstats.power} <br />
+                                                🥊 Combat: {store.heroDetail.powerstats.combat} <br />
+                                            </Card.Text>
+                                            <Card.Text>🧔 Occupation: {store.heroDetail.work.occupation}</Card.Text>
+                                            <br />
+                                            <div className="end">
+                                                <div>
+                                                    {store.heroDetail.biography.alignment === "good" ?
+                                                        <Card.Text className="good-detail">Good<img src={good} alt="" /></Card.Text> :
+                                                        <Card.Text className="bad-detail">Bad<br /><img src={bad} alt="" /></Card.Text>}
+                                                </div>
+                                                <div className="add-detail">
+                                                    <Button variant="warning" onClick={handleClick} style={{ width: '5rem' }}>Add Hero to team ➕</Button>
+                                                </div>
                                             </div>
-                                            <div className="add-detail">
-                                                <Button variant="warning" onClick={handleClick} style={{ width: '5rem' }}>Add Hero to team ➕</Button>
-                                            </div>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </StyledDetail>
-                        )}
+                                        </Card.Body>
+                                    </Card>
+                                </StyledDetail>
+                            )}
                 </>}
         </div>
     )

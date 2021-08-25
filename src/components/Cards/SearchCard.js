@@ -36,6 +36,13 @@ const SearchCard = ({ id, name, image, hero }) => {
                 icon: "warning",
                 dangerMode: true,
             });
+        } else if (team.find(e=>e.id === hero.id)) {
+            swal({
+                title: "I'm sorry",
+                text: "This hero is already on your team",
+                icon: "warning",
+                dangerMode: true,
+            });
         } else {
             swal({
                 text: "Hero added to team",

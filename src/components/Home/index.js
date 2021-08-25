@@ -6,6 +6,7 @@ import AddCard from '../Cards/AddCard';
 import TeamCard from '../Cards/TeamCard';
 import TeamStatus from '../TeamStatus';
 import StyledHome from './styled';
+import err from '../../assets/error.png';
 
 const Home = () => {
     const store = useSelector(state => state);
@@ -13,7 +14,11 @@ const Home = () => {
     return (
         <StyledHome>
             {!window.localStorage.superHero ?
-                <h1>Inicia sesion</h1>
+                <div className="err" >
+                    <img src={err} alt="" />
+                    <h1>I'm sorry<br />Log in with your account to start using the app</h1>
+                    <Button variant="warning">➡ Log In</Button>
+                </div>
                 : <>
                     <h1>MY TEAM</h1>
                     <TeamStatus />

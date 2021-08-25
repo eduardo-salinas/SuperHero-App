@@ -104,6 +104,13 @@ body{
         text-align:center;     
         text-shadow: none;
     }
+    .err{
+        margin-top:2rem;
+        text-align:center;
+        img{
+            height: 40vh;
+        }
+    }
 `
 
 

@@ -24,13 +24,14 @@ export const getHeroByName = (name) => {
         dispatch({ type: LOADING });
         try {
             const heroes = await axios.get(`${URL}/search/${name}`);
-            return dispatch({
-                type: GET_HEROES_BY_NAME,
-                payload: heroes.data.results,
-            });
+            console.log("response ----------try-------", heroes.data)
+            if (heroes.data.response === "success") {
+                return dispatch({ type: GET_HEROES_BY_NAME, payload: heroes.data.results });
+            } else if (heroes.data.response === "error") {
+                return dispatch({ type: GET_HEROES_BY_NAME, payload: [{ err: true }] });
+            };
         } catch (e) {
             console.log(e);
-            return dispatch({ type: GET_HEROES_BY_NAME, payload: [] });
         };
     };
 };
@@ -41,13 +42,13 @@ export const getHeroById = (id) => {
         dispatch({ type: LOADING });
         try {
             const hero = await axios.get(`${URL}/${id}`);
-            return dispatch({
-                type: GET_HERO_BY_ID,
-                payload: hero.data,
-            });
+            if (hero.data.response === "success") {
+                return dispatch({ type: GET_HERO_BY_ID, payload: hero.data });
+            } else if (hero.data.response === "error") {
+                return dispatch({ type: GET_HERO_BY_ID, payload: { err: true } });
+            };
         } catch (e) {
             console.log(e);
-            return dispatch({ type: GET_HERO_BY_ID, payload: {} });
         };
     };
 };
